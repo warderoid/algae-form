@@ -1,12 +1,12 @@
 import peasy.PeasyCam;
 PeasyCam cam;
-PGraphics pg;
 ArrayList<Particle> particle = new ArrayList();
+//how many points in the array
 int numOfLines = 200;
-float phiA = (sqrt(5)+1)/2;
-float phiB = (sqrt(5)-1)/2;
-
-float time = 0;
+//not yet used
+  //float phiA = (sqrt(5)+1)/2;
+  //float phiB = (sqrt(5)-1)/2;
+  //float time = 0;
 
 void setup() {
   size(1000, 1000, P3D);
@@ -32,27 +32,26 @@ void draw() {
   }
   noFill();
   beginShape();
-      for(int i = 0; i < particle.size();i++){
-          PVector p = particle.get(i).location[i];
-          curveVertex(p.x, p.y, p.z);   
-         for(int j = 0; j < particle.size()-1;j++){
-    
-          PVector q = particle.get(j).location[j];
-         rotate(PI);
-         PVector a = particle.get(i).location[i];
-         PVector b = particle.get(j).location[j];
-         //float d = particle.get(i).location[i].dist(particle.get(j).location[j]);
-         float d = PVector.dist(a,b);
-        //  curveVertex(p.x, p.y, p.z);
-        // curveVertex(q.x, q.y, q.z);
-
-        //println("d: "+d);
-        // if(d<= 16){
-        //   p.x = p.x*-1;
-        //   p.y =p.y *-1;
-        //   }
-         }
+  //loop over the particles in the array -1 
+  for(int i = 0; i < particle.size()-1;i++){
+      //gets the location of verts
+    PVector p = particle.get(i).location[i];
+    //draw the curve
+    curveVertex(p.x, p.y, p.z);   
+    //loops over at teh notmal postition in the array but doesnt draw anything 
+    for(int j = 0; j < particle.size();j++){
+        //gets the location of verts
+      PVector q = particle.get(j).location[j];
+      rotate(PI);
+      //create new PVectors for each location - 
+      //I think this is just each point in the line, so not cross-referencing all the points?
+      PVector a = particle.get(i).location[i];
+      PVector b = particle.get(j).location[j];
+      //is this a thing?
+      float d = PVector.dist(a,b);
       }
+  }
+
   endShape();
     
   if (record) {
@@ -63,11 +62,11 @@ void draw() {
 }
 
 
-
 void mousePressed() {
+  //not used
 }
 void keyPressed() {
-if (key == 'R' || key == 'r') { // Press R to save the file
-record = true;
-}
+  if (key == 'R' || key == 'r') { // Press R to save the file
+    record = true;
+  }
 }
