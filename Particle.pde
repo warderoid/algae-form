@@ -8,21 +8,21 @@ PVector[] velocity= new PVector[numOfLines];
 
 Particle() {
 
-     //create points at 0,0,0
-        for (int i = 0; i < numOfLines; ++i) {
-            float x = (i*2)*sin(i/5.0);
-            float y = (i*2)*cos(i/5.0);
-            float z = 0;
-            location[i] = new PVector(x,y,z);
+    //create points at 0,0,0
+    for (int i = 0; i < numOfLines; ++i) {
+        float x = (i*2)*sin(i/5.0);
+        float y = (i*2)*cos(i/5.0);
+        float z = 0;
+        location[i] = new PVector(x,y,z);
     }
-  //  create velocities for each point
+    //  create velocities for each point
     for (int i = 0; i < numOfLines; ++i) {
         float x = random(-0.05,0.05);
         float y = random(-0.05,0.05);
         float z = random(-0.05,0.05);
         velocity[i] = new PVector(x, y,z);
     }
-   
+
 }
 
 void update() {
@@ -34,7 +34,7 @@ void update() {
         float x = location[i].x;
         float y = location[i].y;
         float z = location[i].z;
-        }
+    }
         
     draw();
 }
